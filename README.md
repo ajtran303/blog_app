@@ -1,3 +1,3 @@
-# TDD Blog App
+# TDD Python Flask Blog App
 
-Test-driven development of a blog app with pytest and pydantic
+Test-driven development of a Python Flask blog app with pytest and pydantic
