@@ -76,10 +76,10 @@ class Article(BaseModel):
         return self
 
     @classmethod
-    def create_table(cls, database_name="database.db")
-    conn = sqlite3.connect(database_name)
+    def create_table(cls, database_name="database.db"):
+        conn = sqlite3.connect(database_name)
 
-    conn.execute(
-      "CREATE TABLE IF NOT EXISTS articles (id TEXT, author TEXT, title TEXT, content TEXT)"
-    )
-    conn.close()
+        conn.execute(
+          "CREATE TABLE IF NOT EXISTS articles (id TEXT, author TEXT, title TEXT, content TEXT)"
+        )
+        conn.close()
