@@ -22,7 +22,7 @@ def validate_payload(payload, schema_name):
     validate(
         payload,
         schema,
-        resolver = RefResolver(
+        resolver=RefResolver(
             "file://" + str(pathlib.Path(f"{schemas_dir}/{schema_name}").absolute()),
             schema
         )
@@ -36,36 +36,36 @@ def test_create_article(client):
     }
     response = client.post(
         "/create-article/",
-        data = json.dumps(
+        data=json.dumps(
             data
         ),
-        content_type = "application/json",
+        content_type="application/json",
     )
 
     validate_payload(response.json, "Article.json")
 
 def test_get_article(client):
     article = Article(
-        author = "jane@doe.com",
-        title = "New Article",
-        content  = "Super extra awesome article"
+        author="jane@doe.com",
+        title="New Article",
+        content="Super extra awesome article"
     ).save()
     response = client.get(
         f"/article/{article.id}/",
-        content_type = "application/json",
+        content_type="application/json",
     )
 
     validate_payload(response.json, "Article.json")
 
 def test_list_articles(client):
     Article(
-        author = "jane@doe.com",
-        title = "New Article",
-        content  = "Super extra awesome article"
+        author="jane@doe.com",
+        title="New Article",
+        content="Super extra awesome article"
     ).save()
     response = client.get(
         "/article-list/",
-        content_type = "application/json",
+        content_type="application/json",
     )
 
     validate_payload(response.json, "ArticleList.json")
