@@ -69,3 +69,34 @@ def test_list_articles(client):
     )
 
     validate_payload(response.json, "ArticleList.json")
+
+
+@pytest.mark.parametrize(
+    "data",
+    [
+        {
+            "author": "John Doe",
+            "title": "New Article",
+            "content": "Some extra awesome content"
+        },
+        {
+            "author": "John Doe",
+            "title": "New Article"
+        },
+        {
+            "author": "John Doe",
+            "title": None,
+            "content": "Some extra awesome content"
+        }
+    ]
+)
+def test_create_article_bad_request(client, data):
+    response = client.post(
+        "/create-article/",
+        data=json.dumps(
+            data
+        ),
+        content_type="application/json",
+    )
+
+    assert response.status_code == 400
